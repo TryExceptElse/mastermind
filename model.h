@@ -3,6 +3,9 @@
 
 #include <string>
 
+namespace mm {
+
+
 /**
  * Model for the mastermind game. Interacted with from the UI.
  */
@@ -19,7 +22,10 @@ private:
     bool inProgress;
     std::string word;
 
-    void findNewWord(std::string &outString);
+    void findNewWord(std::string &outWord);
 };
+
+
+} // namespace mm
 
 #endif // MODEL_H

@@ -1,15 +1,21 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+namespace mm {
+
+
 MainWindow::MainWindow(Model &model) :
-    QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    QMainWindow(),
+    ui(new Ui::MainWindow),
+    model(model)
 {
     ui->setupUi(this);
-    this->model = model;
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+
+} // namespace mm

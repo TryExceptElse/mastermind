@@ -1,5 +1,8 @@
 #include "model.h"
 
+namespace mm {
+
+
 static const int WORD_LEN = 4;
 static const std::string SUCCESS_STRING = "Success";
 
@@ -16,18 +19,26 @@ void Model::newGame()
     findNewWord(word);
 }
 
-bool Model::guess(std::string &feedback, const std::string &guess)
+bool Model::guess(std::string &outFeedback, const std::string &guess)
 {
     if (guess.length() != WORD_LEN) {
-        feedback = "Guess was not 4 characters";
+        outFeedback = "Guess was not 4 characters";
     }
     if (guess == word) {
-        feedback = SUCCESS_STRING;
+        outFeedback = SUCCESS_STRING;
         return 1;
     }
     int placeMatches = 0;
     int charMatches = 0;
     for (int i = 0; i < WORD_LEN; ++i) {
-        guessChar = guess.get())
+        const char guessChar = guess[i];
     }
 }
+
+void Model::findNewWord(std::string &outWord) {
+
+}
+
+
+
+} // namespace mm

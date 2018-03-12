@@ -4,9 +4,16 @@
 #include <QMainWindow>
 #include "model.h"
 
+
 namespace Ui {
+
 class MainWindow;
-}
+
+} // namespace Ui
+
+
+namespace mm {
+
 
 class MainWindow : public QMainWindow
 {
@@ -20,5 +27,8 @@ private:
     Ui::MainWindow *ui;
     Model &model;
 };
+
+
+} // namespace mm
 
 #endif // MAINWINDOW_H
