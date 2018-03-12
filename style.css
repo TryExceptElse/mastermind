@@ -1,0 +1,30 @@
+QWidget {    
+	background-color: qlineargradient(spread:pad, x1:1, y1:0.539, x2:0, y2:0, stop:0 rgba(53, 53, 53, 255), stop:1 rgba(98, 98, 98, 255));
+    color: rgba(255, 255, 255, 192);
+	border: none;
+}
+
+QLineEdit {
+    background-color: rgba(255, 255, 255, 32);
+	border: 2px solid rgba(98, 98, 98, 64);
+	border-radius: 2px;
+}
+
+QLineEdit::hover {
+    background-color: rgba(255, 255, 255, 37);
+}
+
+QLabel {
+	background-color: transparent;
+    font: bold;
+}
+
+QPushButton {
+	background-color: qlineargradient(spread:pad, x1:1, y1:0.539, x2:0, y2:0, stop:0 rgba(78, 78, 78, 255), stop:1 rgba(108, 108, 108, 255));
+	border: 2px solid rgba(98, 98, 98, 64);
+	border-radius: 2px;
+}
+
+QPushButton::hover {
+	background-color: qlineargradient(spread:pad, x1:1, y1:0.539, x2:0, y2:0, stop:0 rgba(81, 81, 81, 255), stop:1 rgba(118, 118, 118, 255));
+}
