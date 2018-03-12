@@ -2,6 +2,7 @@
 #define MODEL_H
 
 #include <string>
+#include <vector>
 
 namespace mm {
 
@@ -14,15 +15,18 @@ class Model
 public:
     Model();
 
+    void loadWords(const std::string &path);
     void newGame();
     bool guess(std::string &feedback, const std::string &guess);
     int getNGuesses() const;
+    const std::string &getWord() const;
 private:
     int nGuesses;
     bool inProgress;
     std::string word;
+    std::vector<std::string> wordPool;
 
-    void findNewWord(std::string &outWord);
+    const std::string &findNewWord();
 };
 
 
