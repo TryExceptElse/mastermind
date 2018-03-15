@@ -55,11 +55,14 @@ bool Model::guess(QString &outFeedback, const QString &guess)
     // convert guess and word to lower case versions
     const QString wordLower(word.toLower());
     const QString guessLower(guess.toLower());
+
+    // check if guess was correct. If so, method can return early.
     if (guessLower == wordLower) {
         outFeedback = SUCCESS_STRING;
         inProgress = false; // game is over.
         return true;
     }
+
     // otherwise, set string to 4 chars length and give feedback
     outFeedback = "    ";
     int placeMatches = 0;
@@ -75,6 +78,7 @@ bool Model::guess(QString &outFeedback, const QString &guess)
             ++placeMatches;
         }
     }
+
     // populate feedback string
     for (int i = 0; i < WORD_LEN; ++i) {
         if (i < placeMatches) {
