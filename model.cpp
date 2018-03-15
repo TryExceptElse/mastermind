@@ -16,9 +16,6 @@ Model::Model()
     inProgress = false;
 }
 
-/**
- * Loads words from file, so that they can be used during gameplay.
- */
 void Model::loadWords(const std::string &path) {
     std::ifstream wordFile;
     wordFile.open(path);
@@ -26,7 +23,12 @@ void Model::loadWords(const std::string &path) {
         throw std::runtime_error("Could not read from path: " + path);
     }
     std::string word;
-    while (wordFile >> word) {
+    while (wordFile >> word) { // While lines are able to be retrieved...
+        // Check that length is correct.
+        if (word.length() != WORD_LEN) {
+            std::cerr << "Loaded word had incorrect length: " << word << '\n';
+            continue;
+        }
         wordPool.push_back(word);
     }
 }
@@ -45,6 +47,7 @@ bool Model::guess(std::string &outFeedback, const std::string &guess)
     }
     if (guess == word) {
         outFeedback = SUCCESS_STRING;
+        inProgress = false; // game is over.
         return true;
     }
     // otherwise, set string to 4 chars length and give feedback
@@ -98,6 +101,8 @@ const std::string& Model::findNewWord() {
         std::cerr << "WARN : Model::findNewWord() : "
                   << "wordPool was too large to select from effectively";
     }
+    // If perfectly even distribution is desired, the modulo method
+    // of selection should be replaced.
     return wordPool[std::rand() % wordPool.size()];
 }
 
