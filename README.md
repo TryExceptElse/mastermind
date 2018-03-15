@@ -14,4 +14,4 @@ The model class and components are tested by the test_model subproject,
 and are also built using QMake.
 
 ## License:
-This project uses the GPL license
+This project uses the [GPL license](https://github.com/TryExceptElse/mastermind/blob/master/LICENSE)
