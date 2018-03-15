@@ -34,7 +34,8 @@ SOURCES += \
 HEADERS += \
         mainwindow.h \
     model.h \
-    wordpickdlg.h
+    wordpickdlg.h \
+    exception.h
 
 FORMS += \
         mainwindow.ui \
@@ -42,3 +43,6 @@ FORMS += \
 
 DISTFILES += \
     style.css
+
+RESOURCES += \
+    resources.qrc

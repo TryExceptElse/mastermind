@@ -1,14 +1,18 @@
 #include <cstdlib>
-#include <fstream>
 #include <iostream>
 #include <climits>
+#include <QFile>
+#include <QTextStream>
+#include <QString>
+#include <QIODevice>
 #include "model.h"
+#include "exception.h"
 
 namespace mm {
 
 
 static const int WORD_LEN = 4;
-static const std::string SUCCESS_STRING = "Success";
+static const QString SUCCESS_STRING = "Success";
 
 Model::Model()
 {
@@ -16,17 +20,19 @@ Model::Model()
     inProgress = false;
 }
 
-void Model::loadWords(const std::string &path) {
-    std::ifstream wordFile;
-    wordFile.open(path);
-    if (wordFile.fail()) {
-        throw std::runtime_error("Could not read from path: " + path);
+void Model::loadWords(const QString &path) {
+    QFile wordFile(path);
+    if (!wordFile.open(QIODevice::ReadOnly)) {
+        throw GameException(QString("Could not open file: ") + path);
     }
-    std::string word;
-    while (wordFile >> word) { // While lines are able to be retrieved...
+    QTextStream outStream(&wordFile);
+    QString word;
+     // While lines are able to be retrieved...
+    while ((outStream >> word).status() == 0) {
         // Check that length is correct.
         if (word.length() != WORD_LEN) {
-            std::cerr << "Loaded word had incorrect length: " << word << '\n';
+            std::cerr << "Loaded word had incorrect length: "
+                      << word.data() << '\n';
             continue;
         }
         wordPool.push_back(word);
@@ -40,7 +46,7 @@ void Model::newGame()
     word = findNewWord();
 }
 
-bool Model::guess(std::string &outFeedback, const std::string &guess)
+bool Model::guess(QString &outFeedback, const QString &guess)
 {
     if (guess.length() != WORD_LEN) {
         outFeedback = "Guess was not 4 characters";
@@ -55,9 +61,9 @@ bool Model::guess(std::string &outFeedback, const std::string &guess)
     int placeMatches = 0;
     int charMatches = 0;
     for (int i = 0; i < WORD_LEN; ++i) {
-        const char guessChar = guess[i];
+        const QChar guessChar = guess[i];
         // go to next char if char is not in word
-        if (word.find(guessChar) == word.npos) {
+        if (!word.contains(guessChar)) {
             continue;
         }
         ++charMatches;
@@ -85,14 +91,14 @@ int Model::getNGuesses() const {
     return nGuesses;
 }
 
-const std::string &Model::getWord() const {
+const QString &Model::getWord() const {
     return word;
 }
 
 
 // private helpers
 
-const std::string& Model::findNewWord() {
+const QString& Model::findNewWord() {
     if (wordPool.size() == 0) {
         throw std::runtime_error(
             "Model::findNewWord() : No words in wordPool");

@@ -23,6 +23,9 @@ public:
     explicit MainWindow(Model &model);
     ~MainWindow();
 
+private slots:
+    void handleNewGameClicked();
+
 private:
     Ui::MainWindow *ui;
     Model &model;

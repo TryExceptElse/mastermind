@@ -1,7 +1,7 @@
 #ifndef MODEL_H
 #define MODEL_H
 
-#include <string>
+#include <QString>
 #include <vector>
 
 namespace mm {
@@ -9,6 +9,8 @@ namespace mm {
 
 /**
  * Model for the mastermind game. Interacted with from the UI.
+ * The Model stores game state information in a form that is
+ * independant of its representation.
  */
 class Model
 {
@@ -18,7 +20,7 @@ public:
     /**
      * Loads words from file, so that they can be used during gameplay.
      */
-    void loadWords(const std::string &path);
+    void loadWords(const QString &path);
 
     /**
      * (Re)sets model to that of a new game.
@@ -41,15 +43,15 @@ public:
      * @param guess std::string
      * @return bool true if guess matched target word, otherwise false.
      */
-    bool guess(std::string &feedback, const std::string &guess);
+    bool guess(QString &feedback, const QString &guess);
 
     int getNGuesses() const;
-    const std::string &getWord() const;
+    const QString &getWord() const;
 private:
     int nGuesses;
     bool inProgress;
-    std::string word;
-    std::vector<std::string> wordPool;
+    QString word;
+    std::vector<QString> wordPool;
 
     /**
      * Finds new word from pool by random selection and returns it.
@@ -57,7 +59,7 @@ private:
      * game purposes.
      * @return std::string word
      */
-    const std::string& findNewWord();
+    const QString& findNewWord();
 };
 
 

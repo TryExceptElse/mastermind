@@ -4,6 +4,8 @@
 #define private public
 #include "../model.h"
 
+static const QString WORDS_PATH = "../resources/4-letter-words.txt";
+
 class TestModel : public QObject
 {
     Q_OBJECT
@@ -24,33 +26,32 @@ TestModel::TestModel()
 void TestModel::testMixedResultGuessIsHandledCorrectly()
 {
     mm::Model model;
-    std::string feedback;
+    QString feedback;
     model.word = "test";
-    const std::string guess = "tabs";
+    const QString guess = "tabs";
     bool result = model.guess(feedback, guess);
-    QCOMPARE(false, result);
-    QCOMPARE("*-  ", feedback.data());
+    QCOMPARE(result, false);
+    QCOMPARE(feedback, QString("*-  "));
 }
 
 void TestModel::testWordsAreLoadedCorrectly()
 {
     mm::Model model;
-    const std::string path = "../4-letter-words.txt";
+    const QString path = WORDS_PATH;
     model.loadWords(path);
     QCOMPARE((ulong)5272, model.wordPool.size());
-    QCOMPARE("AANI", model.wordPool[0].data());
-    QCOMPARE("AARU", model.wordPool[1].data());
+    QCOMPARE(model.wordPool[0], QString("AANI"));
+    QCOMPARE(model.wordPool[1], QString("AARU"));
 }
 
 void TestModel::testNewWordRetrievesVaryingSelectionOfWords()
 {
     mm::Model model;
-    const std::string path = "../4-letter-words.txt";
-    model.loadWords(path);
-    std::string a = model.findNewWord();
-    std::string b = model.findNewWord();
-    std::string c = model.findNewWord();
-    std::string d = model.findNewWord();
+    model.loadWords(WORDS_PATH);
+    QString a = model.findNewWord();
+    QString b = model.findNewWord();
+    QString c = model.findNewWord();
+    QString d = model.findNewWord();
     QVERIFY(!(a == b && b == c && c == d));
 
 }
