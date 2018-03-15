@@ -52,7 +52,10 @@ bool Model::guess(QString &outFeedback, const QString &guess)
         outFeedback = "Guess was not 4 characters";
         return false;
     }
-    if (guess == word) {
+    // convert guess and word to lower case versions
+    const QString wordLower(word.toLower());
+    const QString guessLower(guess.toLower());
+    if (guessLower == wordLower) {
         outFeedback = SUCCESS_STRING;
         inProgress = false; // game is over.
         return true;
@@ -62,13 +65,13 @@ bool Model::guess(QString &outFeedback, const QString &guess)
     int placeMatches = 0;
     int charMatches = 0;
     for (int i = 0; i < WORD_LEN; ++i) {
-        const QChar guessChar = guess[i];
+        const QChar guessChar = guessLower[i];
         // go to next char if char is not in word
-        if (!word.contains(guessChar)) {
+        if (!wordLower.contains(guessChar)) {
             continue;
         }
         ++charMatches;
-        if (word[i] == guessChar) {
+        if (wordLower[i] == guessChar) {
             ++placeMatches;
         }
     }
