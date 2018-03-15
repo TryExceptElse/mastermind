@@ -50,6 +50,7 @@ bool Model::guess(QString &outFeedback, const QString &guess)
 {
     if (guess.length() != WORD_LEN) {
         outFeedback = "Guess was not 4 characters";
+        return false;
     }
     if (guess == word) {
         outFeedback = SUCCESS_STRING;
