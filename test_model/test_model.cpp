@@ -18,10 +18,12 @@ private Q_SLOTS:
     void testTotallyWrongGuessIsHandledCorrectly();
     void testCorrectGuessIsHandledCorrectly();
     void testEmptyGuessDoesNotBreakThingsAndReturnsFalse();
-    void testWordsAreLoadedCorrectly();
-    void testNewWordRetrievesVaryingSelectionOfWords();
     void testGuessThatIsUnder4CharsCanBeHandled();
     void testGuessThatIsOver4CharsCanBeHandled();
+    void testGuessIsCaseInsensitive();
+    void testCorrectGuessWithDifferentCaseIsHandledCorrectly();
+    void testWordsAreLoadedCorrectly();
+    void testNewWordRetrievesVaryingSelectionOfWords();
 };
 
 TestModel::TestModel()
@@ -33,6 +35,17 @@ void TestModel::testMixedResultGuessIsHandledCorrectly()
     mm::Model model;
     QString feedback;
     model.word = "test";
+    const QString guess = "tabs";
+    bool result = model.guess(feedback, guess);
+    QCOMPARE(result, false);
+    QCOMPARE(feedback, QString("*-  "));
+}
+
+void TestModel::testGuessIsCaseInsensitive()
+{
+    mm::Model model;
+    QString feedback;
+    model.word = "TEST";
     const QString guess = "tabs";
     bool result = model.guess(feedback, guess);
     QCOMPARE(result, false);
@@ -55,6 +68,16 @@ void TestModel::testCorrectGuessIsHandledCorrectly()
     mm::Model model;
     QString feedback;
     model.word = "test";
+    const QString guess = "test";
+    bool result = model.guess(feedback, guess);
+    QCOMPARE(result, true);
+}
+
+void TestModel::testCorrectGuessWithDifferentCaseIsHandledCorrectly()
+{
+    mm::Model model;
+    QString feedback;
+    model.word = "TEST";
     const QString guess = "test";
     bool result = model.guess(feedback, guess);
     QCOMPARE(result, true);
