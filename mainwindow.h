@@ -25,6 +25,7 @@ public:
 
 private slots:
     void handleNewGameClicked();
+    void handleGuessClicked();
 
 private:
     Ui::MainWindow *ui;
