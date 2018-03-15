@@ -15,8 +15,13 @@ public:
 
 private Q_SLOTS:
     void testMixedResultGuessIsHandledCorrectly();
+    void testTotallyWrongGuessIsHandledCorrectly();
+    void testCorrectGuessIsHandledCorrectly();
+    void testEmptyGuessDoesNotBreakThingsAndReturnsFalse();
     void testWordsAreLoadedCorrectly();
     void testNewWordRetrievesVaryingSelectionOfWords();
+    void testGuessThatIsUnder4CharsCanBeHandled();
+    void testGuessThatIsOver4CharsCanBeHandled();
 };
 
 TestModel::TestModel()
@@ -32,6 +37,57 @@ void TestModel::testMixedResultGuessIsHandledCorrectly()
     bool result = model.guess(feedback, guess);
     QCOMPARE(result, false);
     QCOMPARE(feedback, QString("*-  "));
+}
+
+void TestModel::testTotallyWrongGuessIsHandledCorrectly()
+{
+    mm::Model model;
+    QString feedback;
+    model.word = "test";
+    const QString guess = "blah";
+    bool result = model.guess(feedback, guess);
+    QCOMPARE(result, false);
+    QCOMPARE(feedback, QString("    "));
+}
+
+void TestModel::testCorrectGuessIsHandledCorrectly()
+{
+    mm::Model model;
+    QString feedback;
+    model.word = "test";
+    const QString guess = "test";
+    bool result = model.guess(feedback, guess);
+    QCOMPARE(result, true);
+}
+
+void TestModel::testEmptyGuessDoesNotBreakThingsAndReturnsFalse()
+{
+    mm::Model model;
+    QString feedback;
+    model.word = "test";
+    const QString guess = "";
+    bool result = model.guess(feedback, guess);
+    QCOMPARE(result, false);
+}
+
+void TestModel::testGuessThatIsUnder4CharsCanBeHandled()
+{
+    mm::Model model;
+    QString feedback;
+    model.word = "test";
+    const QString guess = "tes";
+    bool result = model.guess(feedback, guess);
+    QCOMPARE(result, false);
+}
+
+void TestModel::testGuessThatIsOver4CharsCanBeHandled()
+{
+    mm::Model model;
+    QString feedback;
+    model.word = "test";
+    const QString guess = "testagasdafsdf";
+    bool result = model.guess(feedback, guess);
+    QCOMPARE(result, false);
 }
 
 void TestModel::testWordsAreLoadedCorrectly()
