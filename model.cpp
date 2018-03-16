@@ -13,6 +13,7 @@ namespace mm {
 
 static const int WORD_LEN = 4;
 static const QString SUCCESS_STRING = "Success";
+static const QString NO_MATCHES_STRING = "No matches";
 
 Model::Model()
 {
@@ -90,6 +91,10 @@ bool Model::guess(QString &outFeedback, const QString &guess)
         } else {
             outFeedback[i] = ' ';
         }
+    }
+
+    if (outFeedback == "    ") { // There should always be visible feedback.
+        outFeedback = NO_MATCHES_STRING;
     }
     return false;
 }
