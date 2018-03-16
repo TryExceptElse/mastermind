@@ -2,7 +2,7 @@
 #include <QtTest>
 // ugly but simple way to test class members (I hope there's a better way?)
 #define private public
-#include "../model.h"
+#include "../src/model.h"
 
 static const QString WORDS_PATH = "../resources/4-letter-words.txt";
 

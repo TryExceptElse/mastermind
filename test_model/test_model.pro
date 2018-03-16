@@ -15,6 +15,6 @@ CONFIG   -= app_bundle
 
 TEMPLATE = app
 
-SOURCES += test_model.cpp ../model.cpp
-HEADERS += ../model.h
+SOURCES += test_model.cpp ../src/model.cpp
+HEADERS += ../src/model.h
 DEFINES += SRCDIR=\\\"$$PWD/\\\"
