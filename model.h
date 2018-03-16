@@ -47,6 +47,7 @@ public:
 
     int getNGuesses() const;
     const QString &getWord() const;
+    bool isInProgress() const;
 private:
     int nGuesses;
     bool inProgress;

@@ -52,6 +52,8 @@ bool Model::guess(QString &outFeedback, const QString &guess)
         outFeedback = "Guess was not 4 characters";
         return false;
     }
+    ++nGuesses; // increment guess counter tracking user guesses
+
     // convert guess and word to lower case versions
     const QString wordLower(word.toLower());
     const QString guessLower(guess.toLower());
@@ -99,10 +101,13 @@ int Model::getNGuesses() const {
     return nGuesses;
 }
 
-const QString &Model::getWord() const {
+const QString& Model::getWord() const {
     return word;
 }
 
+bool Model::isInProgress() const {
+    return inProgress;
+}
 
 // private helpers
 
