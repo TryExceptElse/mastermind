@@ -45,6 +45,11 @@ private slots:
      */
     bool showGameAlreadyInProgressDlg();
 
+    /**
+     * Ask user if they would like to play again.
+     */
+    bool showPlayAgainDlg();
+
 private:
     Ui::MainWindow *ui;
     Model &model;

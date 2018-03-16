@@ -58,6 +58,9 @@ void MainWindow::guess() {
     ui->feedback->setText(feedback);
     if (success) {
         showSuccessDlg();
+        if(showPlayAgainDlg()) {
+            newGame();
+        }
     }
 }
 
@@ -92,6 +95,15 @@ bool MainWindow::showGameAlreadyInProgressDlg() {
     msgBox.setInformativeText("Are you sure you want to start a new game?");
     msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
     msgBox.setDefaultButton(QMessageBox::No);
+    msgBox.setStyleSheet(styleSheet()); // set dialog stylesheet to own
+    return msgBox.exec() == QMessageBox::Yes;
+}
+
+bool MainWindow::showPlayAgainDlg() {
+    QMessageBox msgBox;
+    msgBox.setText("Would you like to play again?");
+    msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+    msgBox.setDefaultButton(QMessageBox::Yes);
     msgBox.setStyleSheet(styleSheet()); // set dialog stylesheet to own
     return msgBox.exec() == QMessageBox::Yes;
 }
