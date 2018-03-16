@@ -60,7 +60,6 @@ void TestModel::testTotallyWrongGuessIsHandledCorrectly()
     const QString guess = "blah";
     bool result = model.guess(feedback, guess);
     QCOMPARE(result, false);
-    QCOMPARE(feedback, QString("    "));
 }
 
 void TestModel::testCorrectGuessIsHandledCorrectly()
