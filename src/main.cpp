@@ -4,7 +4,7 @@
 #include <QString>
 #include <ctime>
 
-static const QString WORD_FILE_PATH = ":/resources/4-letter-words.txt";
+static const QString WORD_FILE_PATH = ":/4-letter-words.txt";
 
 int main(int argc, char *argv[]) {
     Q_INIT_RESOURCE(resources);

@@ -26,20 +26,17 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += std=c++14
 
 SOURCES += \
-        main.cpp \
-        mainwindow.cpp \
-    model.cpp
+        src/main.cpp \
+        src/mainwindow.cpp \
+        src/model.cpp
 
 HEADERS += \
-        mainwindow.h \
-    model.h \
-    exception.h
+        src/mainwindow.h \
+        src/model.h \
+        src/exception.h
 
 FORMS += \
-        mainwindow.ui
-
-DISTFILES += \
-    style.css
+        resources/mainwindow.ui
 
 RESOURCES += \
-    resources.qrc
+        resources/resources.qrc

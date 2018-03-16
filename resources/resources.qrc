@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>4-letter-words.txt</file>
+        <file>style.css</file>
+    </qresource>
+</RCC>
