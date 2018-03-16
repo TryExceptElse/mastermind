@@ -28,18 +28,15 @@ CONFIG += std=c++14
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    model.cpp \
-    wordpickdlg.cpp
+    model.cpp
 
 HEADERS += \
         mainwindow.h \
     model.h \
-    wordpickdlg.h \
     exception.h
 
 FORMS += \
-        mainwindow.ui \
-    wordpickdlg.ui
+        mainwindow.ui
 
 DISTFILES += \
     style.css
