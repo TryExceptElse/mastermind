@@ -27,9 +27,15 @@ MainWindow::MainWindow(Model &model) :
     );
     connect(
                 ui->guessBtn, // widget
-                SIGNAL (released()), // event signal
+                SIGNAL (released() ), // event signal
                 this, // handler
                 SLOT (guess()) // method
+    );
+    connect(
+                ui->lineEdit,
+                SIGNAL (returnPressed() ),
+                this,
+                SLOT (guess())
     );
 }
 
@@ -63,6 +69,7 @@ void MainWindow::guess() {
         }
     }
 }
+
 
 void MainWindow::showNoGameInProgressDlg() {
     QMessageBox msgBox;
