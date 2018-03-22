@@ -62,6 +62,9 @@ void MainWindow::guess() {
     // get results of guess, with feedback stored in feedback string.
     const bool success = model.guess(feedback, guess);
     ui->feedback->setText(feedback);
+    QString allFeedback = ui->pastGuesses->toPlainText();
+    allFeedback = guess + ": " + feedback + "\n" +allFeedback;
+    ui->pastGuesses->setText(allFeedback);
     if (success) {
         showSuccessDlg();
         if(showPlayAgainDlg()) {
