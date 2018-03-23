@@ -49,6 +49,7 @@ void MainWindow::newGame() {
         return;
     }
     model.newGame();
+    ui->pastGuesses->setText("");
     ui->feedback->setText(NEW_GAME_MSG);
 }
 
